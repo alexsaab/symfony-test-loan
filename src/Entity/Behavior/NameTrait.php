@@ -6,10 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait NameTrait
 {
-    /**
-     * @var string|null
-     * @ORM\Column(type="string")
-     */
+
+    #[ORM\Column(type: 'string', length: 255)]
     protected $name;
 
     /**

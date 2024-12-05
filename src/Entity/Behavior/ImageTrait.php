@@ -5,6 +5,7 @@ namespace App\Entity\Behavior;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 trait ImageTrait
 {
@@ -12,12 +13,11 @@ trait ImageTrait
      * @ORM\Column(type="string", nullable=true)
      * @var string
      */
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     protected $image;
 
-    /**
-     * @Vich\UploadableField(mapping="uploads", fileNameProperty="image")
-     * @var File
-     */
+    #[UploadableField(mapping: 'uploads', fileNameProperty: 'image')]
     protected $imageFile;
 
     /**

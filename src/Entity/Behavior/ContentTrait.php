@@ -6,11 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait ContentTrait
 {
-    /**
-     * @var string|null
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $content;
+
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    protected ?string $content;
 
     /**
      * @return string|null

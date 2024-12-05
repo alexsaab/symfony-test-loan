@@ -6,25 +6,57 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait AddressTrait
 {
-    /**
-     * @var string|null
-     * @ORM\Column(type="text", nullable=true)
-     */
-    protected $content;
 
-    /**
-     * @return string|null
-     */
-    public function getContent(): ?string
+    #[ORM\Column(type: 'string', length: 255)]
+    protected $address = null;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    protected $postalCode = null;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    protected $city = null;
+
+
+    #[ORM\Column(type: 'string', length: 100)]
+    protected $state = null;
+
+    public function getAddress(): null
     {
-        return $this->content;
+        return $this->address;
     }
 
-    /**
-     * @param string|null $content
-     */
-    public function setContent(?string $content): void
+    public function setAddress(null $address): void
     {
-        $this->content = $content;
+        $this->address = $address;
+    }
+
+    public function getPostalCode(): null
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(null $postalCode): void
+    {
+        $this->postalCode = $postalCode;
+    }
+
+    public function getCity(): null
+    {
+        return $this->city;
+    }
+
+    public function setCity(null $city): void
+    {
+        $this->city = $city;
+    }
+
+    public function getState(): null
+    {
+        return $this->state;
+    }
+
+    public function setState(null $state): void
+    {
+        $this->state = $state;
     }
 }

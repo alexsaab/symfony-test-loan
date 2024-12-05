@@ -6,10 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SortableTrait
 {
-    /**
-     * @var int|null
-     * @ORM\Column(type="integer", name="`order`", nullable=true)
-     */
+
+    #[ORM\Column(type: 'integer', nullable: true, name:'`order`')]
     private $order;
 
     public function setOrder(?int $order)

@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Behavior\TimestampableTrait;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Behavior\AddressTrait;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client
 {
+    use AddressTrait, TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

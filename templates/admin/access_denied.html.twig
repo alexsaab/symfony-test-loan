@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 class="card-title text-danger">
+                        <i class="bi bi-shield-exclamation"></i>
+                        Access Denied
+                    </h1>
+                    <p class="card-text">{{ message }}</p>
+                    <div class="mt-4">
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Login
+                        </a>
+                        <a href="{{ path('homepage') }}" class="btn btn-secondary">
+                            <i class="bi bi-house"></i>
+                            Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

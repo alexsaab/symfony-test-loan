@@ -2,35 +2,27 @@
 
 namespace App\Entity;
 
+use App\Entity\Behavior\TimestampableTrait;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
- * @ORM\Entity(repositoryClass: ClientRepository::class)]
- * @ORM\Table(name="`users`")
- *
- * @Constraints\UniqueEntity("email")
- * @Constraints\UniqueEntity("username")
- */
+#[ORM\Entity(repositoryClass:UserRepository::class)]
+#[ORM\Table(name:"`users`")]
+#[UniqueEntity("email")]
+#[UniqueEntity("username")]
 class User extends BaseUser
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+
+    use TimestampableTrait;
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type:"integer")]
     protected $id;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $sendNotifications = true;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var \DateTime|null
-     */
-    protected $updatedAt;
+    #[ORM\Column(type:"boolean", nullable: true)]
+    protected bool $sendNotifications = true;
 
     public function __construct()
     {

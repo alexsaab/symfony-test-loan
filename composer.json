@@ -9,6 +9,8 @@
         "php": ">=8.3.14",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^2.0",
+        "doctrine/dbal": "^3.8.2",
         "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.3",
@@ -20,7 +22,9 @@
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.1.*",
         "symfony/runtime": "7.1.*",
-        "symfony/yaml": "7.1.*"
+        "symfony/serializer": "7.1.*",
+        "symfony/yaml": "7.1.*",
+        "vich/uploader-bundle": "^2.4"
     },
     "config": {
         "allow-plugins": {
