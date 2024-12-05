@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Reset Password</h1>
+
+                    {% if error is defined %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+
+                    <form action="{{ path('fos_user_resetting_send_email') }}" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input type="email" id="email" name="email" class="form-control" required autofocus>
+                            </div>
+                            <div class="form-text">
+                                Enter your email address and we'll send you a link to reset your password.
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-envelope-paper"></i>
+                                Send Reset Link
+                            </button>
+                            <a href="{{ path('fos_user_security_login') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i>
+                                Back to Login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

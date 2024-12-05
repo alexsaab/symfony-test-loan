@@ -17,7 +17,7 @@
                     {% endif %}
 
                     <form method="post">
-                        {% if csrf_token('authenticate') is defined %}
+                        {% if csrf_token('authenticate').tostring is defined %}
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         {% endif %}
 
