@@ -1,0 +1,51 @@
+{# templates/credit_application/apply.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Заявка на кредит{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Заявка на кредит</h2>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Информация о кредите</h3>
+                <div class="mb-3">
+                    {{ form_label(form.credit_amount) }}
+                    {{ form_widget(form.credit_amount, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.credit_amount) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.credit_term) }}
+                    {{ form_widget(form.credit_term, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.credit_term) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Информация о клиенте</h3>
+                <div class="mb-3">
+                    {{ form_label(form.client_firstname) }}
+                    {{ form_widget(form.client_firstname, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.client_firstname) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.client_lastname) }}
+                    {{ form_widget(form.client_lastname, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.client_lastname) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.client_email) }}
+                    {{ form_widget(form.client_email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.client_email) }}
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ form_widget(form.submit) }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

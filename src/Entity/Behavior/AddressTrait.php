@@ -59,4 +59,6 @@ trait AddressTrait
     {
         $this->state = $state;
     }
+
+
 }

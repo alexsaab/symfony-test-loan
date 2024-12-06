@@ -29,17 +29,17 @@ class ResettingController extends AbstractController
         $this->tokenGenerator = $tokenGenerator;
     }
 
-    #[Route('/resetting/request', name: 'fos_user_resetting_request')]
+    #[Route(path: '/resetting/request', name: 'fos_user_resetting_request')]
     public function request(): Response
     {
         return $this->render('resetting/request.html.twig');
     }
 
-    #[Route('/resetting/send-email', name: 'fos_user_resetting_send_email', methods: ['POST'])]
+    #[Route(path: '/resetting/send-email', name: 'fos_user_resetting_send_email', methods: ['POST'])]
     public function sendEmail(Request $request): Response
     {
         $email = $request->request->get('email');
-        
+
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'email' => $email,
             'enabled' => true
@@ -60,7 +60,7 @@ class ResettingController extends AbstractController
         $token = $this->tokenGenerator->generateToken();
         $user->setConfirmationToken($token);
         $user->setPasswordRequestedAt(new \DateTime());
-        
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
@@ -79,7 +79,7 @@ class ResettingController extends AbstractController
         return $this->render('resetting/check_email.html.twig');
     }
 
-    #[Route('/resetting/reset/{token}', name: 'fos_user_resetting_reset')]
+    #[Route(path: '/resetting/reset/{token}', name: 'fos_user_resetting_reset')]
     public function reset(
         Request $request,
         string $token,

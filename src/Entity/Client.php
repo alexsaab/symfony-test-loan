@@ -15,25 +15,25 @@ class Client
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $firstName = null;
+    #[ORM\Column(length: 100, nullable: false)]
+    private ?string $firstName;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $lastName = null;
+    #[ORM\Column(length: 100, nullable: false)]
+    private ?string $lastName;
 
     #[ORM\Column(nullable: true)]
     private ?int $age = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $ssn = null;
+    #[ORM\Column(length: 100, unique: true, nullable: false)]
+    private ?string $ssn;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $fico = null;
+    #[ORM\Column(unique: true, nullable: false)]
+    private ?int $fico;
 
-    #[ORM\Column(length: 200, nullable: true)]
-    private ?string $email = null;
+    #[ORM\Column(length: 200, unique: true, nullable: false)]
+    private ?string $email;
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $phone = null;

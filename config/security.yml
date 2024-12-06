@@ -16,13 +16,19 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            form_login:
+                provider: fos_userbundle
+                login_path: fos_user_security_login
+#                check_path: fos_user_security_check
+                default_target_path: admin
+                always_use_default_target_path: true
             
         admin:
             pattern: ^/admin
             form_login:
                 provider: fos_userbundle
                 login_path: fos_user_security_login
-                check_path: fos_user_security_check
+#                check_path: fos_user_security_check
                 default_target_path: admin
                 always_use_default_target_path: true
             logout:
@@ -37,9 +43,15 @@ security:
         main:
             pattern: ^/
             user_checker: fos_user.user_checker
+            lazy: true
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                default_target_path: admin
+                always_use_default_target_path: true
+            entry_point: form_login
             logout: true
             anonymous: true
             remember_me:
@@ -52,5 +64,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_MANAGER] }
         - { path: ^/profile, role: ROLE_USER }

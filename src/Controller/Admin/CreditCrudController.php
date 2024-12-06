@@ -28,7 +28,7 @@ class CreditCrudController extends AbstractCrudController
             NumberField::new('percent'),
             IntegerField::new('amount'),
             TextField::new('currency'),
-            AssociationField::new('clientId')->setLabel('Client'),
+            AssociationField::new('client')->setLabel('Client'),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];

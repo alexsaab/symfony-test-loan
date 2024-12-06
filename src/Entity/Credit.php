@@ -33,7 +33,7 @@ class Credit
     private ?string $currency = 'USD';
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'credits')]
-    private int $clientId;
+    private int $client;
 
     public function getId(): ?int
     {
@@ -86,5 +86,25 @@ class Credit
         $this->amount = $amount;
 
         return $this;
+    }
+
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(?string $currency): void
+    {
+        $this->currency = $currency;
+    }
+
+    public function getClient(): int
+    {
+        return $this->client;
+    }
+
+    public function setClient(int $client): void
+    {
+        $this->client = $client;
     }
 }

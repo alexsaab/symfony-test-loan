@@ -4,14 +4,43 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        fos_userbundle:
+            id: fos_user.user_provider.username
     firewalls:
+        auth:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                login_path:             fos_user_security_login
+                check_path:             fos_user_security_check
+#                csrf_token_generator: security.csrf.token_manager
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                samesite: lax
+            logout:       true
+            # anonymous:    lazy
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: fos_userbundle
+            form_login:
+                login_path: app_login
+                check_path: login_check
+                enable_csrf: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /admin
+                always_remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

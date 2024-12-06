@@ -30,10 +30,10 @@ class ClientCrudController extends AbstractCrudController
             IntegerField::new('fico'),
             EmailField::new('email'),
             TelephoneField::new('phone'),
-            TextField::new('street'),
+            TextField::new('address'),
             TextField::new('city'),
             TextField::new('state'),
-            TextField::new('zipCode'),
+            TextField::new('postalCode'),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];

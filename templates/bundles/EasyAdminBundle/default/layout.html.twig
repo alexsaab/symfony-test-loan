@@ -1,0 +1,11 @@
+{% extends '@!EasyAdmin/default/layout.html.twig' %}
+
+{% block head_custom_stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock head_custom_stylesheets %}
+
+{% block body_custom_javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('admin') }}
+{% endblock body_custom_javascript %}

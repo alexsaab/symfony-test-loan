@@ -1,0 +1,14 @@
+fos_user:
+     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+admin_profile:
+    path: /admin/profile
+    controller: App\Controller\Admin\ProfileController::index
+
+admin_logout:
+    path: /admin/logout
+    controller: App\Controller\Admin\ProfileController::logout
+
+admin_login:
+    path: /admin/login
+    controller: App\Controller\Admin\ProfileController::login
