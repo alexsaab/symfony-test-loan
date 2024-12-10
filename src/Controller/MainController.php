@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Credit;
 use App\Entity\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,25 +27,41 @@ class MainController extends AbstractController
         $form = $this->createFormBuilder(['credit' => $credit, 'client' => $client])
             ->add('credit_amount', NumberType::class, [
                 'mapped' => false,
-                'label' => 'Сумма кредита',
+                'label' => 'Loan amount',
             ])
             ->add('credit_term', NumberType::class, [
                 'mapped' => false,
-                'label' => 'Срок кредита (месяцев)',
+                'label' => 'Loan term (months)',
             ])
             ->add('client_firstname', TextType::class, [
                 'mapped' => false,
-                'label' => 'Имя',
+                'label' => 'First name',
             ])
             ->add('client_lastname', TextType::class, [
                 'mapped' => false,
-                'label' => 'Фамилия',
+                'label' => 'Last name',
             ])
-            ->add('client_email', TextType::class, [
+            ->add('client_phone', TextType::class, [
+                'mapped' => false,
+                'label' => 'Phone',
+            ])
+            ->add('client_email', EmailType::class, [
                 'mapped' => false,
                 'label' => 'Email',
             ])
-            ->add('submit', SubmitType::class, ['label' => 'Отправить заявку'])
+            ->add('client_age', NumberType::class, [
+                'mapped' => false,
+                'label' => 'Age'])
+            ->add('client_snn', TextType::class, [
+                'mapped' => false,
+                'label' => 'SNN',
+            ])
+            ->add('client_state', TextType::class, [
+                'mapped' => false,
+                'label' => 'State',
+            ])
+
+            ->add('submit', SubmitType::class, ['label' => 'Send application'])
             ->getForm();
 
         $form->handleRequest($request);
@@ -73,5 +90,11 @@ class MainController extends AbstractController
     public function success(): Response
     {
         return $this->render('credit_application/success.html.twig');
+    }
+
+    #[Route(path: '/', name: 'home')]
+    public function home(): Response
+    {
+        return $this->redirectToRoute('credit_apply');
     }
 }
