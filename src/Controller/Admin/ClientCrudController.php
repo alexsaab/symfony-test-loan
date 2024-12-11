@@ -25,6 +25,7 @@ class ClientCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('firstName'),
             TextField::new('lastName'),
+            IntegerField::new('averageMonthlyIncome'),
             IntegerField::new('age'),
             TextField::new('ssn'),
             IntegerField::new('fico'),

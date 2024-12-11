@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Behavior\AddressTrait;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Client
 {
     use AddressTrait, TimestampableTrait;
@@ -29,7 +30,7 @@ class Client
     #[ORM\Column(length: 100, unique: true, nullable: false)]
     private ?string $ssn;
 
-    #[ORM\Column(unique: true, nullable: false)]
+    #[ORM\Column(nullable: true)]
     private ?int $fico;
 
     #[ORM\Column(length: 200, unique: true, nullable: false)]
@@ -37,6 +38,9 @@ class Client
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $phone = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $averageMonthlyIncome = null;
 
     public function getId(): ?int
     {
@@ -126,4 +130,15 @@ class Client
 
         return $this;
     }
+
+    public function getAverageMonthlyIncome(): ?int
+    {
+        return $this->averageMonthlyIncome;
+    }
+
+    public function setAverageMonthlyIncome(?int $averageMonthlyIncome): void
+    {
+        $this->averageMonthlyIncome = $averageMonthlyIncome;
+    }
+
 }

@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use App\Entity\Behavior\TimestampableTrait;
+use App\Enum\CreditStatus;
 use App\Repository\CreditRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CreditRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Credit
 {
 
@@ -25,7 +27,7 @@ class Credit
     private ?int $term = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 4, nullable: false)]
-    private ?string $percent = null;
+    private ?string $percent = '20';
 
     #[ORM\Column(nullable: false)]
     private ?int $amount;
@@ -33,7 +35,16 @@ class Credit
     private ?string $currency = 'USD';
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'credits')]
-    private int $client;
+    private Client $client;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private string $status;
+
+    public function __construct()
+    {
+        $this->status = CreditStatus::CREATED;
+    }
+
 
     public function getId(): ?int
     {
@@ -98,13 +109,25 @@ class Credit
         $this->currency = $currency;
     }
 
-    public function getClient(): int
+    public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function setClient(int $client): void
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }
+
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
 }

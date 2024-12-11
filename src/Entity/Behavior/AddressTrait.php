@@ -20,42 +20,42 @@ trait AddressTrait
     #[ORM\Column(type: 'string', length: 100)]
     protected $state = null;
 
-    public function getAddress(): null
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    public function setAddress(null $address): void
+    public function setAddress(string $address): void
     {
         $this->address = $address;
     }
 
-    public function getPostalCode(): null
+    public function getPostalCode(): string
     {
         return $this->postalCode;
     }
 
-    public function setPostalCode(null $postalCode): void
+    public function setPostalCode(string $postalCode): void
     {
         $this->postalCode = $postalCode;
     }
 
-    public function getCity(): null
+    public function getCity(): string
     {
         return $this->city;
     }
 
-    public function setCity(null $city): void
+    public function setCity(string $city): void
     {
         $this->city = $city;
     }
 
-    public function getState(): null
+    public function getState(): string
     {
         return $this->state;
     }
 
-    public function setState(null $state): void
+    public function setState(string $state): void
     {
         $this->state = $state;
     }

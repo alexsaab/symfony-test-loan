@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 #[ORM\Table(name:"`users`")]
 #[UniqueEntity("email")]
 #[UniqueEntity("username")]
+#[ORM\HasLifecycleCallbacks]
 class User extends BaseUser
 {
 

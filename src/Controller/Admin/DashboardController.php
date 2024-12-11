@@ -42,6 +42,12 @@ class DashboardController extends AbstractDashboardController
 
             yield MenuItem::section('Finance');
             yield MenuItem::linkToCrud('Credits', 'fas fa-credit-card', Credit::class);
+        } else {
+            yield MenuItem::section('Clients');
+            yield MenuItem::linkToCrud('Clients', 'fas fa-address-card', Client::class);
+
+            yield MenuItem::section('Finance');
+            yield MenuItem::linkToCrud('Credits', 'fas fa-credit-card', Credit::class);
         }
 
         yield MenuItem::section('Account');
